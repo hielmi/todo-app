@@ -24,6 +24,7 @@ const FormTodos = () => {
       setTitle("");
       setDesc("");
       setDate(new Date().toISOString().slice(0, 10));
+      setEditTodo(null);
     }
   }, [selectedTodo]);
 
@@ -44,6 +45,7 @@ const FormTodos = () => {
 
         localStorage.setItem("todos", JSON.stringify(newTodos));
         dispatch({ type: "SET_TODO", payload: newTodos });
+        setEditTodo(null);
         Swal.fire("Saved!", "", "success");
       }
     });
