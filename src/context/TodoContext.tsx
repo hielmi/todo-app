@@ -17,13 +17,13 @@ export const TodosContext = createContext(defaultValue);
 export const todosReducer = (state: any, action: any) => {
   switch (action.type) {
     case "SET_TODO":
-      return { ...state, todos: action.payload };
+      return { ...state, todos: action.payload || [] };
     case "CREATE_TODO":
-      return { ...state, todos: [action.payload, ...state.todos] };
+      return { ...state, todos: [action.payload, ...(state.todos || [])] };
     case "DELETE_TODO":
       return {
         ...state,
-        todos: state.todos.filter((todo) => todo.id !== action.payload),
+        todos: (state.todos || []).filter((todo) => todo.id !== action.payload),
       };
     default:
       return state;
